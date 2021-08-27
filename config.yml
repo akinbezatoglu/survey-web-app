@@ -1,0 +1,10 @@
+listen_address: :8080
+
+api:
+  domain: http://localhost:8080
+  signing_secret: "Cv2UGHgSLdkIpw8"
+
+database:
+  mongodb:
+    connection_uri: mongodb://localhost:27017
+    database_name: SurveyDB

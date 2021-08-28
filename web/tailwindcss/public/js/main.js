@@ -1,6 +1,6 @@
 async function CreateForm() {
     const forms = document.querySelector('#forms');
-    await fetch("http://localhost:8080/api/v1/f/"+forms.dataset.u, {
+    await fetch("ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/f/"+forms.dataset.u, {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -26,7 +26,7 @@ async function DeleteForm(name) {
     const id = name.getAttribute("name")
     const fid = document.getElementById(id).dataset.f;
     uid = document.getElementById("forms").dataset.u;
-    await fetch("http://localhost:8080/api/v1/f/"+uid+"/"+fid, {
+    await fetch('ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/f/'+uid+'/'+fid, {
         method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -46,7 +46,7 @@ async function createHomeFormElements(i, u, f, n) {
 
     const a = document.createElement("a")
     a.classList.add("select-none", "w-32", "h-64")
-    a.setAttribute("href", "http://localhost:8000/form/edit?u="+u+"&f="+f)
+    a.setAttribute("href", "https://akinbezatoglu.github.io/survey/form/edit.html?u="+u+"&f="+f)
 
     const bt = document.createElement("button")
     bt.classList.add("select-none", "text-lg", "font-mono", "mb-48", "ml-4")
@@ -71,12 +71,12 @@ async function createHomeFormElements(i, u, f, n) {
 
 function Logout() {
     window.localStorage.removeItem("token")
-    window.location.replace("http://localhost:8000/auth/login");
+    window.location.replace("https://akinbezatoglu.github.io/survey/auth/login.html");
 }
 
 window.onload = async function() {
     const forms = document.querySelector('#forms');
-    const response = await fetch('http://localhost:8080/api/v1/auth', {
+    const response = await fetch('ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/auth', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem("token")
@@ -88,7 +88,7 @@ window.onload = async function() {
         forms.dataset.u = uid
         const name = data["name"]
         const lastname = data["lastname"]
-        const base_api_url = 'http://localhost:8080/api/v1/f/'
+        const base_api_url = 'ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/f/'
         document.getElementById('User').innerHTML = name + " " + lastname
         const resp = fetch(base_api_url+uid, {
             method: 'GET',
@@ -109,6 +109,6 @@ window.onload = async function() {
         })
     })
     .catch(error => {
-        window.location.replace("http://localhost:8000/auth/login");
+        window.location.replace("https://akinbezatoglu.github.io/survey/auth/login.html");
     });
 }

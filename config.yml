@@ -1,7 +1,7 @@
-listen_address: :8080
+listen_address: :443
 
 api:
-  domain: http://localhost:8080
+  domain: https://localhost:443
   signing_secret: "Cv2UGHgSLdkIpw8"
 
 database:

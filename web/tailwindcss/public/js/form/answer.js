@@ -90,7 +90,7 @@ window.onload = async function() {
     const u = window.location.search.substring(1).split("&")[0].split("=")[1]
     const f = window.location.search.substring(1).split("&")[1].split("=")[1]
 
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/f/'+u+'/'+f, {
+    const response = await fetch('http://localhost:8080/api/v1/f/'+u+'/'+f, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem("token")
@@ -101,7 +101,7 @@ window.onload = async function() {
         const fname = data["name"]
         const fdesc = data["desc"]
         createFormHtmlElement(f,fname,fdesc)
-        const response = fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/f/'+u+'/'+f+"/response", {
+        const response = fetch('http://localhost:8080/api/v1/f/'+u+'/'+f+"/response", {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem("token")

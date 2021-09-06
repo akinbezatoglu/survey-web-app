@@ -5,7 +5,7 @@ async function CreateQuestion_One() {
 
     const u = window.location.search.substring(1).split("&")[0].split("=")[1]
     const f = window.location.search.substring(1).split("&")[1].split("=")[1]
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/q/'+u+'/'+f, {
+    const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f, {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -32,7 +32,7 @@ async function CreateQuestion_Paragraph() {
 
     const u = window.location.search.substring(1).split("&")[0].split("=")[1]
     const f = window.location.search.substring(1).split("&")[1].split("=")[1]
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/q/'+u+'/'+f, {
+    const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f, {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -55,7 +55,7 @@ async function CreateQuestion_Multiple() {
 
     const u = window.location.search.substring(1).split("&")[0].split("=")[1]
     const f = window.location.search.substring(1).split("&")[1].split("=")[1]
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/q/'+u+'/'+f, {
+    const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f, {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -96,7 +96,7 @@ async function SaveQuestionChanges(element) {
                     "opt": opt
                 });
             }
-            const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/q/'+u+'/'+f+'/'+q, {
+            const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f+'/'+q, {
                 method: 'PUT',
                 headers: {
                     'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -130,7 +130,7 @@ async function SaveQuestionChanges_Paragraph(element) {
     const f = window.location.search.substring(1).split("&")[1].split("=")[1]
 
     if (ques != "") {
-        const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/q/'+u+'/'+f+'/'+q, {
+        const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f+'/'+q, {
             method: 'PUT',
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -159,7 +159,7 @@ async function DeleteQuestion(element) {
 
     const q = element.getAttribute("id")
 
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/q/'+u+'/'+f+'/'+q, {
+    const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f+'/'+q, {
         method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -322,7 +322,7 @@ async function CreateOption_One(element) {
     const u = window.location.search.substring(1).split("&")[0].split("=")[1]
     const f = window.location.search.substring(1).split("&")[1].split("=")[1]
     const q = element.getAttribute("id")
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/o/'+u+'/'+f+'/'+q, {
+    const response = await fetch('http://localhost:8080/api/v1/o/'+u+'/'+f+'/'+q, {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -354,7 +354,7 @@ async function CreateOption_Multiple(element) {
     const u = window.location.search.substring(1).split("&")[0].split("=")[1]
     const f = window.location.search.substring(1).split("&")[1].split("=")[1]
     const q = element.getAttribute("id")
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/q/'+u+'/'+f+'/'+q, {
+    const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f+'/'+q, {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -386,7 +386,7 @@ async function DeleteOption(element) {
     const q = element.getAttribute("id")
     const optNo = parseInt(element.dataset.optno)
 
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/q/'+u+'/'+f+'/'+q+'/'+optNo, {
+    const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f+'/'+q+'/'+optNo, {
         method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -425,7 +425,7 @@ async function SaveFormChanges() {
     if (newName != "" && newDesc != "") {
         const u = window.location.search.substring(1).split("&")[0].split("=")[1]
         const f = window.location.search.substring(1).split("&")[1].split("=")[1]
-        const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/f/'+u+'/'+f, {
+        const response = await fetch('http://localhost:8080/api/v1/f/'+u+'/'+f, {
             method: 'PUT',
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -1027,7 +1027,7 @@ async function CopyQuestion(element, ques_type) {
             }
             const u = window.location.search.substring(1).split("&")[0].split("=")[1]
             const f = window.location.search.substring(1).split("&")[1].split("=")[1]
-            const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/q/'+u+'/'+f+'/copy', {
+            const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f+'/copy', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -1078,7 +1078,7 @@ async function CopyQuestion_Paragraph(element) {
             }
             const u = window.location.search.substring(1).split("&")[0].split("=")[1]
             const f = window.location.search.substring(1).split("&")[1].split("=")[1]
-            const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/q/'+u+'/'+f+'/copy', {
+            const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f+'/copy', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -1099,10 +1099,10 @@ window.onload = async function() {
     const u = window.location.search.substring(1).split("&")[0].split("=")[1]
     const f = window.location.search.substring(1).split("&")[1].split("=")[1]
     const view = document.getElementById("view_form")
-    view.setAttribute("href", "https://akinbezatoglu.github.io/survey/form/view.html?f="+f)
+    view.setAttribute("href", "http://localhost:8000/form/view.html?f="+f)
     const view_resp = document.getElementById("view_response")
-    view_resp.setAttribute("href", "https://akinbezatoglu.github.io/survey/form/answer.html?u="+u+"&f="+f)
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/f/'+u+'/'+f, {
+    view_resp.setAttribute("href", "http://localhost:8000/form/answer.html?u="+u+"&f="+f)
+    const response = await fetch('http://localhost:8080/api/v1/f/'+u+'/'+f, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem("token")
@@ -1147,6 +1147,6 @@ window.onload = async function() {
         }
     })
     .catch(error => {
-        window.location.replace("https://akinbezatoglu.github.io/survey/auth/login.html");
+        window.location.replace("http://localhost:8000/auth/login.html");
     });
 }

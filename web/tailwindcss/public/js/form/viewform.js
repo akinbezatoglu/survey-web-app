@@ -387,7 +387,7 @@ async function SendForm() {
     }
 
     if (Send) {
-        const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/f/'+fid+'/view', {
+        const response = await fetch('http://localhost:8080/api/v1/f/'+fid+'/view', {
             method: 'POSt',
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem("token")
@@ -395,7 +395,7 @@ async function SendForm() {
             body: JSON.stringify(answers)
         })
         .then(response => {
-            window.location.replace("https://akinbezatoglu.github.io/survey/index.html");
+            window.location.replace("http://localhost:8000/index.html");
         })
         .catch(error => {
            console.log(error); 
@@ -407,7 +407,7 @@ async function SendForm() {
 
 window.onload = async function() {
     const f = window.location.search.substring(1).split("=")[1]
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/f/'+f+"/view", {
+    const response = await fetch('http://localhost:8080/api/v1/f/'+f+"/view", {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem("token")
@@ -455,10 +455,10 @@ window.onload = async function() {
             }
 
         } else {
-            window.location.replace("https://akinbezatoglu.github.io/survey/index.html");
+            window.location.replace("http://localhost:8000/index.html");
         }
     })
     .catch(error => {
-        window.location.replace("https://akinbezatoglu.github.io/survey/auth/login.html");
+        window.location.replace("http://localhost:8000/auth/login.html");
     });
 }

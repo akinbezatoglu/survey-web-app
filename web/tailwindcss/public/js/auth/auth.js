@@ -28,7 +28,7 @@ function Registration() {
         "password": password
     }
     console.log(data);
-    const response = fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/auth/signup', {
+    const response = fetch('http://localhost:8080/api/v1/auth/signup', {
         method: 'POST',
         body: JSON.stringify(data)
     })
@@ -36,7 +36,7 @@ function Registration() {
     .then(data => {
         if (data["_id"] != "") {
             window.localStorage.setItem("token", data["token"]);
-            window.location.replace("https://akinbezatoglu.github.io/survey/index.html");
+            window.location.replace("http://localhost:8000/index.html");
         } else {
             alert("Bu emaile ait kullanıcı bulunmaktadır.")
             return false;
@@ -69,7 +69,7 @@ function Login() {
         "email": email,
         "password": password
     }
-    const response = fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/auth/login', {
+    const response = fetch('http://localhost:8080/api/v1/auth/login', {
         method: 'POST',
         body: JSON.stringify(data)
     })
@@ -77,7 +77,7 @@ function Login() {
     .then(data => {
         if (data != null) {
             window.localStorage.setItem("token", data["token"]);
-            window.location.replace("https://akinbezatoglu.github.io/survey/index.html");
+            window.location.replace("http://localhost:8000/index.html");
         } else {
             alert("Kullanıcı bilgilerinizi hatalı girdiniz.")
             return false;
@@ -109,7 +109,7 @@ function ValidatePassword(input) {
 }
 
 window.onload = async function() {
-    const response = await fetch('https://ec2-18-222-132-17.us-east-2.compute.amazonaws.com:8080/api/v1/auth', {
+    const response = await fetch('http://localhost:8080/api/v1/auth', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -118,7 +118,7 @@ window.onload = async function() {
     .then(response => response.json())
     .then(data => {
         if (data["_id"] != "") {
-            window.location.replace("https://akinbezatoglu.github.io/survey/index.html");
+            window.location.replace("http://localhost:8000/index.html");
         }
     })
     .catch(error => {

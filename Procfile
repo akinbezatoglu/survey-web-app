@@ -1,1 +1,0 @@
-echo "web: currency" > Procfile

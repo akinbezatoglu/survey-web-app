@@ -386,7 +386,7 @@ async function DeleteOption(element) {
     const q = element.getAttribute("id")
     const optNo = parseInt(element.dataset.optno)
 
-    const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f+'/'+q+'/'+optNo, {
+    const response = await fetch('http://localhost:8080/api/v1/o/'+u+'/'+f+'/'+q+'/'+optNo, {
         method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -409,9 +409,9 @@ async function DeleteOption(element) {
                 const last_child = elem.lastChild
                 last_child.dataset.optno = i-1
             }
-            document.getElementById("response").innerHTML = "Yaptığınız değişiklikler kaydedildi." 
+            //document.getElementById("response").innerHTML = "Yaptığınız değişiklikler kaydedildi." 
         } else {
-            document.getElementById("response").innerHTML = "Soru silinemedi."
+            //document.getElementById("response").innerHTML = "Soru silinemedi."
         }
     })
     .catch(error => {

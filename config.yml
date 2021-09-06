@@ -6,5 +6,5 @@ api:
 
 database:
   mongodb:
-    connection_uri: mongodb://localhost:27017
+    connection_uri: mongodb+srv://akinbezatoglu:7XPincbb@survey.9zncp.mongodb.net/test
     database_name: SurveyDB

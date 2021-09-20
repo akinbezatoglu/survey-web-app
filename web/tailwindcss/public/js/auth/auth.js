@@ -36,7 +36,7 @@ function Registration() {
     .then(data => {
         if (data["_id"] != "") {
             window.localStorage.setItem("token", data["token"]);
-            window.location.replace("http://localhost:8000/index.html");
+            window.location.replace("http://localhost:8000");
         } else {
             alert("Bu emaile ait kullanıcı bulunmaktadır.")
             return false;
@@ -77,7 +77,7 @@ function Login() {
     .then(data => {
         if (data != null) {
             window.localStorage.setItem("token", data["token"]);
-            window.location.replace("http://localhost:8000/index.html");
+            window.location.replace("http://localhost:8000");
         } else {
             alert("Kullanıcı bilgilerinizi hatalı girdiniz.")
             return false;
@@ -118,7 +118,7 @@ window.onload = async function() {
     .then(response => response.json())
     .then(data => {
         if (data["_id"] != "") {
-            window.location.replace("http://localhost:8000/index.html");
+            window.location.replace("http://localhost:8000");
         }
     })
     .catch(error => {

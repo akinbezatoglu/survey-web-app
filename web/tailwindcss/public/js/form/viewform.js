@@ -387,19 +387,20 @@ async function SendForm() {
     }
 
     if (Send) {
+        console.log(answers)
         const response = await fetch('http://localhost:8080/api/v1/f/'+fid+'/view', {
-            method: 'POSt',
+            method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem("token")
             },
             body: JSON.stringify(answers)
         })
         .then(response => {
-            window.location.replace("http://localhost:8000/index.html");
+            console.log(response)
+            if (response.ok) {
+                window.location.replace("http://localhost:8000");
+            }
         })
-        .catch(error => {
-           console.log(error); 
-        });
     } else {
         alert("Gerekli tüm soruları cevaplayınız.")
     }
@@ -455,10 +456,10 @@ window.onload = async function() {
             }
 
         } else {
-            window.location.replace("http://localhost:8000/index.html");
+            window.location.replace("http://localhost:8000");
         }
     })
     .catch(error => {
-        window.location.replace("http://localhost:8000/auth/login.html");
+        window.location.replace("http://localhost:8000/auth/login");
     });
 }

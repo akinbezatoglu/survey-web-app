@@ -46,7 +46,7 @@ async function createHomeFormElements(i, u, f, n) {
 
     const a = document.createElement("a")
     a.classList.add("select-none", "w-32", "h-64")
-    a.setAttribute("href", "http://localhost:8000/form/edit.html?u="+u+"&f="+f)
+    a.setAttribute("href", "http://localhost:8000/form/edit?u="+u+"&f="+f)
 
     const bt = document.createElement("button")
     bt.classList.add("select-none", "text-lg", "font-mono", "mb-48", "ml-4")
@@ -71,12 +71,12 @@ async function createHomeFormElements(i, u, f, n) {
 
 function Logout() {
     window.localStorage.removeItem("token")
-    window.location.replace("http://localhost:8000/auth/login.html");
+    window.location.replace("http://localhost:8000/auth/login");
 }
 
-window.onload = async function() {
+window.onload = function() {
     const forms = document.querySelector('#forms');
-    const response = await fetch('http://localhost:8080/api/v1/auth', {
+    const response = fetch('http://localhost:8080/api/v1/auth', {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem("token")
@@ -109,6 +109,6 @@ window.onload = async function() {
         })
     })
     .catch(error => {
-        window.location.replace("http://localhost:8000/auth/login.html");
+        window.location.replace("http://localhost:8000/auth/login");
     });
 }

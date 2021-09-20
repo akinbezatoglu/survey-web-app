@@ -7,6 +7,7 @@ import (
 // Form is the structure of a form
 type Answer struct {
 	ID     primitive.ObjectID `json:"_id" bson:"_id,omitempty"`
+	QuesID string             `json:"quesID" bson:"quesID,omitempty"`
 	Opt    string             `json:"opt" bson:"opt,omitempty"`
 	IsTrue bool               `json:"isTrue" bson:"isTrue,omitempty"`
 	Score  int                `json:"score" bson:"score,omitempty"`

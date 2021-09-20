@@ -354,7 +354,7 @@ async function CreateOption_Multiple(element) {
     const u = window.location.search.substring(1).split("&")[0].split("=")[1]
     const f = window.location.search.substring(1).split("&")[1].split("=")[1]
     const q = element.getAttribute("id")
-    const response = await fetch('http://localhost:8080/api/v1/q/'+u+'/'+f+'/'+q, {
+    const response = await fetch('http://localhost:8080/api/v1/o/'+u+'/'+f+'/'+q, {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + window.localStorage.getItem('token')
@@ -1099,9 +1099,9 @@ window.onload = async function() {
     const u = window.location.search.substring(1).split("&")[0].split("=")[1]
     const f = window.location.search.substring(1).split("&")[1].split("=")[1]
     const view = document.getElementById("view_form")
-    view.setAttribute("href", "http://localhost:8000/form/view.html?f="+f)
+    view.setAttribute("href", "http://localhost:8000/form/view?f="+f)
     const view_resp = document.getElementById("view_response")
-    view_resp.setAttribute("href", "http://localhost:8000/form/answer.html?u="+u+"&f="+f)
+    view_resp.setAttribute("href", "http://localhost:8000/form/answer?u="+u+"&f="+f)
     const response = await fetch('http://localhost:8080/api/v1/f/'+u+'/'+f, {
         method: 'GET',
         headers: {
@@ -1147,6 +1147,6 @@ window.onload = async function() {
         }
     })
     .catch(error => {
-        window.location.replace("http://localhost:8000/auth/login.html");
+        window.location.replace("http://localhost:8000/auth/login");
     });
 }

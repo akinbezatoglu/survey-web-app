@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -77,7 +76,6 @@ func (a *API) formViewPostHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	////////////////////////////////////////////////////////////////////////
-
 	formid := strings.Split(r.URL.Path, "/")[4]
 	f, err := a.db.GetForm(formid)
 	if err != nil {
@@ -89,25 +87,25 @@ func (a *API) formViewPostHandler(w http.ResponseWriter, r *http.Request) {
 	var allAnswers []model.Answer
 	err = json.NewDecoder(r.Body).Decode(&allAnswers)
 	if err != nil {
-		response.Errorf(w, r, err, http.StatusInternalServerError, "Internal Server Error")
+		response.Errorf(w, r, err, http.StatusInternalServerError, "Internall Server Error")
 		return
 	}
 	for i := 0; i < len(allAnswers); i++ {
-		q, err := a.db.GetQuestion(f.Questions[i])
+		q, err := a.db.GetQuestion(allAnswers[i].QuesID)
 		if err != nil {
-			response.Errorf(w, r, err, http.StatusInternalServerError, "Internal Server Error")
+			response.Errorf(w, r, err, http.StatusInternalServerError, "Internalll Server Error")
 			return
 		}
 		answer := allAnswers[i]
 		ansID, err := a.db.CreateAnswer(&answer)
 		if err != nil {
-			response.Errorf(w, r, err, http.StatusInternalServerError, "Internal Server Error")
+			response.Errorf(w, r, err, http.StatusInternalServerError, "Internallll Server Error")
 			return
 		}
 		q.Answers = append(q.Answers, ansID)
 		err = a.db.SaveQuestion(q)
 		if err != nil {
-			response.Errorf(w, r, err, http.StatusInternalServerError, "Internal Server Error")
+			response.Errorf(w, r, err, http.StatusInternalServerError, "Internalllll Server Error")
 			return
 		}
 	}
@@ -146,7 +144,6 @@ func (a *API) formGetHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		if owner {
 			f, err := a.db.GetForm(formid)
-			fmt.Printf("f: %v\n", f)
 			if err != nil {
 				response.Errorf(w, r, err, http.StatusInternalServerError, "Internal Server Error")
 				return
@@ -165,7 +162,6 @@ func (a *API) formGetHandler(w http.ResponseWriter, r *http.Request) {
 			var viewForm model.ViewForm
 			mapstructure.Decode(f, &viewForm)
 			viewForm.Questions = q
-			fmt.Printf("q : %v\n", viewForm.Questions)
 			response.Write(w, r, viewForm)
 		} else {
 			response.Errorf(w, r, nil, http.StatusUnauthorized, "Unauthorized")
@@ -207,20 +203,17 @@ func (a *API) formPutHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		if owner {
 			form, err := a.db.GetForm(formid)
-			fmt.Printf("form: %v\n", form)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
 			//var f *model.Form
 			err = json.NewDecoder(r.Body).Decode(&form)
-			//fmt.Printf("f: %v\n", f)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
 			//mapstructure.Decode(f, &form)
-			fmt.Printf("formID: %v\n", form.ID)
 			err = a.db.SaveForm(form)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
